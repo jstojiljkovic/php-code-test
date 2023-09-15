@@ -4,15 +4,16 @@ declare(strict_types=1);
 namespace Tymeshift\PhpTest\Domains\Schedule;
 
 use Tymeshift\PhpTest\Components\DatabaseInterface;
+use Tymeshift\PhpTest\Domains\Schedule\Interfaces\ScheduleStorageInterface;
 use Tymeshift\PhpTest\Interfaces\EntityInterface;
 use Tymeshift\PhpTest\Interfaces\StorageInterface;
 
-class ScheduleStorage
+class ScheduleStorage implements ScheduleStorageInterface
 {
     /**
      * @var DatabaseInterface
      */
-    private $db;
+    private DatabaseInterface $db;
 
     public function __construct(DatabaseInterface $database)
     {

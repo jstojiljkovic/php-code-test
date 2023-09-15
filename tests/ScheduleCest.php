@@ -18,17 +18,17 @@ class ScheduleCest
     private $scheduleStorageMock;
 
     /**
-     * @var ScheduleRepository
+     * @var ScheduleRepository|null
      */
-    private $scheduleRepository;
+    private ?ScheduleRepository $scheduleRepository;
     
-    public function _before()
+    public function _before(): void
     {
         $this->scheduleStorageMock = \Mockery::mock(ScheduleStorage::class);
         $this->scheduleRepository = new ScheduleRepository($this->scheduleStorageMock, new ScheduleFactory());
     }
 
-    public function _after()
+    public function _after(): void
     {
         $this->scheduleRepository = null;
         $this->scheduleStorageMock = null;
