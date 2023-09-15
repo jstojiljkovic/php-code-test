@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tymeshift\PhpTest\Domains\Schedule;
 
 use DateTime;
+use Tymeshift\PhpTest\Domains\Schedule\Interfaces\ScheduleItemInterface;
 use Tymeshift\PhpTest\Interfaces\EntityInterface;
 
 class ScheduleEntity implements EntityInterface
