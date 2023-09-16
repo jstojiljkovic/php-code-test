@@ -2,7 +2,9 @@
 
 namespace Tymeshift\PhpTest\Domains\Schedule\Interfaces;
 
-interface ScheduleRepositoryInterface
+use Tymeshift\PhpTest\Interfaces\RepositoryInterface;
+
+interface ScheduleRepositoryInterface extends RepositoryInterface
 {
 
 }
