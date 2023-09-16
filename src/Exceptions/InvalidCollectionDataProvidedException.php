@@ -5,7 +5,7 @@ namespace Tymeshift\PhpTest\Exceptions;
 
 class InvalidCollectionDataProvidedException extends \Exception
 {
-    const MESSAGE = 'Invalid data provided for building collection';
+    public const MESSAGE = 'Invalid data provided for building collection';
 
     public function __construct()
     {

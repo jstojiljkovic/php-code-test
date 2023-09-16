@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Tymeshift\PhpTest\Interfaces;
 
+use Tymeshift\PhpTest\Exceptions\InvalidCollectionDataProvidedException;
+
 interface CollectionInterface
 {
     /**
@@ -17,6 +19,7 @@ interface CollectionInterface
      * @param array $data
      * @param FactoryInterface $factory
      * @return $this
+     * @throws InvalidCollectionDataProvidedException
      */
     public function createFromArray(array $data, FactoryInterface $factory):self;
 
