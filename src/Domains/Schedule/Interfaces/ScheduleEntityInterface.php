@@ -42,4 +42,14 @@ interface ScheduleEntityInterface extends EntityInterface
 	 * @return DateTime
 	 */
 	public function getStartTime(): DateTime;
+	
+	/**
+	 * @return array
+	 */
+	public function getItems(): array;
+	
+	/**
+	 * @return $this
+	 */
+	public function addItem(ScheduleItemInterface $item): self;
 }
