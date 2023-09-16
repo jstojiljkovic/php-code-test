@@ -1,26 +1,47 @@
 <?php
-declare(strict_types=1);
+declare( strict_types = 1 );
 
 namespace Tymeshift\PhpTest\Domains\Task;
 
 use Tymeshift\PhpTest\Components\HttpClientInterface;
+use Tymeshift\PhpTest\Domains\Task\Interfaces\TaskStorageInterface;
 
-class TaskStorage
+class TaskStorage implements TaskStorageInterface
 {
-    private $client;
-
-    public function __construct(HttpClientInterface $httpClient)
-    {
-        $this->client = $httpClient;
-    }
-
-    public function getByScheduleId(int $id): array
-    {
-
-    }
-
-    public function getByIds(array $ids): array
-    {
-        // TODO: Implement getByIds() method.
-    }
+	/**
+	 * @var HttpClientInterface
+	 */
+	private HttpClientInterface $client;
+	
+	/**
+	 * @param HttpClientInterface $httpClient
+	 */
+	public function __construct(HttpClientInterface $httpClient)
+	{
+		$this->client = $httpClient;
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function getByScheduleId(int $id): array
+	{
+		return $this->client->request('GET', '/api/v1/tasks/schedule/' . $id);
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function getByIds(array $ids): array
+	{
+		return $this->client->request('GET', '/api/v1/tasks/' . http_build_query([ 'ids' => $ids ]));
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function getById(int $id): array
+	{
+		return $this->client->request('GET', '/api/v1/tasks/' . $id);
+	}
 }

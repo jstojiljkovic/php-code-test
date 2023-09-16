@@ -4,10 +4,10 @@ declare( strict_types = 1 );
 namespace Tymeshift\PhpTest\Domains\Schedule;
 
 use DateTime;
+use Tymeshift\PhpTest\Domains\Schedule\Interfaces\ScheduleEntityInterface;
 use Tymeshift\PhpTest\Domains\Schedule\Interfaces\ScheduleItemInterface;
-use Tymeshift\PhpTest\Interfaces\EntityInterface;
 
-class ScheduleEntity implements EntityInterface
+class ScheduleEntity implements ScheduleEntityInterface
 {
 	/**
 	 * @var int
@@ -35,7 +35,7 @@ class ScheduleEntity implements EntityInterface
 	private array $items;
 	
 	/**
-	 * @return int
+	 * @inheritDoc
 	 */
 	public function getId(): int
 	{
@@ -43,18 +43,16 @@ class ScheduleEntity implements EntityInterface
 	}
 	
 	/**
-	 * @param int $id
-	 *
-	 * @return ScheduleEntity
+	 * @inheritDoc
 	 */
-	public function setId(int $id): ScheduleEntity
+	public function setId(int $id): self
 	{
 		$this->id = $id;
 		return $this;
 	}
 	
 	/**
-	 * @return string
+	 * @inheritDoc
 	 */
 	public function getName(): string
 	{
@@ -62,18 +60,16 @@ class ScheduleEntity implements EntityInterface
 	}
 	
 	/**
-	 * @param string $name
-	 *
-	 * @return ScheduleEntity
+	 * @inheritDoc
 	 */
-	public function setName(string $name): ScheduleEntity
+	public function setName(string $name): self
 	{
 		$this->name = $name;
 		return $this;
 	}
 	
 	/**
-	 * @return DateTime
+	 * @inheritDoc
 	 */
 	public function getStartTime(): DateTime
 	{
@@ -81,18 +77,16 @@ class ScheduleEntity implements EntityInterface
 	}
 	
 	/**
-	 * @param DateTime $startTime
-	 *
-	 * @return ScheduleEntity
+	 * @inheritDoc
 	 */
-	public function setStartTime(DateTime $startTime): ScheduleEntity
+	public function setStartTime(DateTime $startTime): self
 	{
 		$this->startTime = $startTime;
 		return $this;
 	}
 	
 	/**
-	 * @return DateTime
+	 * @inheritDoc
 	 */
 	public function getEndTime(): DateTime
 	{
@@ -100,11 +94,9 @@ class ScheduleEntity implements EntityInterface
 	}
 	
 	/**
-	 * @param DateTime $endTime
-	 *
-	 * @return ScheduleEntity
+	 * @inheritDoc
 	 */
-	public function setEndTime(DateTime $endTime): ScheduleEntity
+	public function setEndTime(DateTime $endTime): self
 	{
 		$this->endTime = $endTime;
 		return $this;

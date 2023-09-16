@@ -3,11 +3,15 @@
 namespace Tymeshift\PhpTest\Domains\Schedule;
 
 use DateTime;
+use Tymeshift\PhpTest\Interfaces\CollectionInterface;
 use Tymeshift\PhpTest\Interfaces\EntityInterface;
 use Tymeshift\PhpTest\Interfaces\FactoryInterface;
 
 class ScheduleFactory implements FactoryInterface
 {
+	/**
+	 * @inheritDoc
+	 */
 	public function createEntity(array $data): EntityInterface
 	{
 		$entity = new ScheduleEntity();
@@ -28,5 +32,13 @@ class ScheduleFactory implements FactoryInterface
 		}
 		
 		return $entity;
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function createCollection(array $data): CollectionInterface
+	{
+		return ( new ScheduleCollection() )->createFromArray($data, $this);
 	}
 }
