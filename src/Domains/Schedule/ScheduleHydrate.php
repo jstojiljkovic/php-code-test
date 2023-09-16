@@ -9,9 +9,7 @@ use Tymeshift\PhpTest\Domains\Task\Interfaces\TaskEntityInterface;
 class ScheduleHydrate implements ScheduleHydrateInterface
 {
 	/**
-	 * @param TaskEntityInterface $taskEntity
-	 *
-	 * @return ScheduleItemInterface
+	 * @inheritDoc
 	 */
 	public function hydrate(TaskEntityInterface $taskEntity): ScheduleItemInterface
 	{

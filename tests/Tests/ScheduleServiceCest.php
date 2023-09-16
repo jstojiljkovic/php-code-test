@@ -76,9 +76,11 @@ class ScheduleServiceCest
 			->andReturn([ 'id' => 1, 'start_time' => 1631232000, 'end_time' => 1631232000 + 86400, 'name' => 'Test' ]);
 		
 		$schedule = $this->scheduleService->fillScheduleItems(1);
+		$items = $schedule->getItems();
 		$tester->assertEquals(1, $schedule->getId());
 		$tester->assertCount(3, $schedule->getItems());
-		
+		$tester->assertEquals($items[0]->getScheduleId(), $schedule->getId());
+		$tester->assertEquals($items[0]->getType(), 'Dunno');
 	}
 	
 	/**
