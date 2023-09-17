@@ -5,6 +5,7 @@ namespace Tymeshift\PhpTest\Domains\Task;
 
 use Tymeshift\PhpTest\Components\HttpClientInterface;
 use Tymeshift\PhpTest\Domains\Task\Interfaces\TaskStorageInterface;
+use Tymeshift\PhpTest\Enums\HttpMethodEnum;
 
 class TaskStorage implements TaskStorageInterface
 {
@@ -26,7 +27,7 @@ class TaskStorage implements TaskStorageInterface
 	 */
 	public function getByScheduleId(int $id): array
 	{
-		return $this->client->request('GET', '/api/v1/tasks/schedule/' . $id);
+		return $this->client->request(HttpMethodEnum::GET->value, '/api/v1/tasks/schedule/' . $id);
 	}
 	
 	/**
@@ -34,7 +35,7 @@ class TaskStorage implements TaskStorageInterface
 	 */
 	public function getByIds(array $ids): array
 	{
-		return $this->client->request('GET', '/api/v1/tasks/' . http_build_query([ 'ids' => $ids ]));
+		return $this->client->request(HttpMethodEnum::GET->value, '/api/v1/tasks/' . http_build_query([ 'ids' => $ids ]));
 	}
 	
 	/**
@@ -42,6 +43,6 @@ class TaskStorage implements TaskStorageInterface
 	 */
 	public function getById(int $id): array
 	{
-		return $this->client->request('GET', '/api/v1/tasks/' . $id);
+		return $this->client->request(HttpMethodEnum::GET->value, '/api/v1/tasks/' . $id);
 	}
 }

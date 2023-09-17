@@ -4,12 +4,11 @@ namespace Tymeshift\PhpTest\Domains\Schedule;
 
 use Tymeshift\PhpTest\Domains\Schedule\Interfaces\ScheduleHydrateInterface;
 use Tymeshift\PhpTest\Domains\Schedule\Interfaces\ScheduleRepositoryInterface;
+use Tymeshift\PhpTest\Domains\Schedule\Interfaces\ScheduleServiceInterface;
 use Tymeshift\PhpTest\Domains\Task\Interfaces\TaskRepositoryInterface;
-use Tymeshift\PhpTest\Exceptions\InvalidCollectionDataProvidedException;
-use Tymeshift\PhpTest\Exceptions\StorageDataMissingException;
 use Tymeshift\PhpTest\Interfaces\EntityInterface;
 
-class ScheduleService
+class ScheduleService implements ScheduleServiceInterface
 {
 	/**
 	 * @var ScheduleRepositoryInterface
@@ -40,13 +39,9 @@ class ScheduleService
 	}
 	
 	/**
-	 * @param $id
-	 *
-	 * @return EntityInterface
-	 * @throws StorageDataMissingException
-	 * @throws InvalidCollectionDataProvidedException
+	 * @inheritDoc
 	 */
-	public function fillScheduleItems($id): EntityInterface
+	public function fillScheduleItems(int $id): EntityInterface
 	{
 		$schedule = $this->scheduleRepository->getById($id);
 		$tasks = $this->taskRepository->getByScheduleId($id);

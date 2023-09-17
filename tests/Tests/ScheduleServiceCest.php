@@ -15,6 +15,7 @@ use Tymeshift\PhpTest\Domains\Schedule\ScheduleStorage;
 use Tymeshift\PhpTest\Domains\Task\TaskFactory;
 use Tymeshift\PhpTest\Domains\Task\TaskRepository;
 use Tymeshift\PhpTest\Domains\Task\TaskStorage;
+use Tymeshift\PhpTest\Enums\HttpMethodEnum;
 use UnitTester;
 
 class ScheduleServiceCest
@@ -67,7 +68,7 @@ class ScheduleServiceCest
 	{
 		$this->httpClientMock
 			->shouldReceive('request')
-			->with('GET', '/api/v1/tasks/schedule/1')
+			->with(HttpMethodEnum::GET->value, '/api/v1/tasks/schedule/1')
 			->andReturn([ ...$example ]);
 		
 		$this->db

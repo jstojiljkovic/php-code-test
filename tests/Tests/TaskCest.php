@@ -11,6 +11,7 @@ use Tymeshift\PhpTest\Domains\Task\TaskCollection;
 use Tymeshift\PhpTest\Domains\Task\TaskFactory;
 use Tymeshift\PhpTest\Domains\Task\TaskRepository;
 use Tymeshift\PhpTest\Domains\Task\TaskStorage;
+use Tymeshift\PhpTest\Enums\HttpMethodEnum;
 use Tymeshift\PhpTest\Exceptions\InvalidCollectionDataProvidedException;
 use Tymeshift\PhpTest\Exceptions\StorageDataMissingException;
 use UnitTester;
@@ -56,7 +57,7 @@ class TaskCest
 	{
 		$this->httpClientMock
 			->shouldReceive('request')
-			->with('GET', '/api/v1/tasks/schedule/1')
+			->with(HttpMethodEnum::GET->value, '/api/v1/tasks/schedule/1')
 			->andReturn([ ...$example ]);
 		
 		$tasks = $this->taskRepository->getByScheduleId(1);
@@ -70,7 +71,7 @@ class TaskCest
 	{
 		$this->httpClientMock
 			->shouldReceive('request')
-			->with('GET', '/api/v1/tasks/schedule/1')
+			->with(HttpMethodEnum::GET->value, '/api/v1/tasks/schedule/1')
 			->andReturn([]);
 		
 		$tester->expectThrowable(StorageDataMissingException::class, function () {
@@ -88,7 +89,7 @@ class TaskCest
 		
 		$this->httpClientMock
 			->shouldReceive('request')
-			->with('GET', '/api/v1/tasks/1')
+			->with(HttpMethodEnum::GET->value, '/api/v1/tasks/1')
 			->andReturn($data);
 		
 		$task = $this->taskRepository->getById(1);
@@ -104,7 +105,7 @@ class TaskCest
 	{
 		$this->httpClientMock
 			->shouldReceive('request')
-			->with('GET', '/api/v1/tasks/1')
+			->with(HttpMethodEnum::GET->value, '/api/v1/tasks/1')
 			->andReturn();
 		
 		$tester->expectThrowable(StorageDataMissingException::class, function () {
@@ -126,7 +127,7 @@ class TaskCest
 		$ids = [ 1, 2, 3 ];
 		$this->httpClientMock
 			->shouldReceive('request')
-			->with('GET', '/api/v1/tasks/' . http_build_query([ 'ids' => $ids ]))
+			->with(HttpMethodEnum::GET->value, '/api/v1/tasks/' . http_build_query([ 'ids' => $ids ]))
 			->andReturn([ ...$example ]);
 		
 		$tasks = $this->taskRepository->getByIds($ids);
@@ -141,7 +142,7 @@ class TaskCest
 		$ids = [ 1, 2, 3 ];
 		$this->httpClientMock
 			->shouldReceive('request')
-			->with('GET', '/api/v1/tasks/' . http_build_query([ 'ids' => $ids ]))
+			->with(HttpMethodEnum::GET->value, '/api/v1/tasks/' . http_build_query([ 'ids' => $ids ]))
 			->andReturn([]);
 		
 		$tester->expectThrowable(StorageDataMissingException::class, function () use ($ids) {
